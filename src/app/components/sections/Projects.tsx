@@ -2,68 +2,58 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 import { ProjectCard } from '../ProjectCard';
 
-const categories = ['All', 'Web App', 'E-commerce', 'Dashboard', 'Landing Page'];
+const categories = ['All', 'Web App', 'E-commerce', 'Landing Page'];
 
 const projects = [
   {
     id: 1,
-    title: 'TaskFlow Pro',
-    description: 'A comprehensive project management and task tracking application with real-time collaboration features, built with React and TypeScript.',
-    image: 'https://images.unsplash.com/photo-1758876201729-e60eaf5f9194?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXNrJTIwbWFuYWdlbWVudCUyMHByb2R1Y3Rpdml0eSUyMGFwcHxlbnwxfHx8fDE3Njk2NDgwODR8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Firebase'],
-    category: 'Web App',
-    liveUrl: '#',
-    githubUrl: '#'
+    title: 'APPEXY - Activity Manager',
+    description: 'Smart solution for busy people. A modern landing page with pricing plans, testimonials, and contact forms built with Tailwind CSS.',
+    image: '/src/images/Apexy page.png',
+    technologies: ['HTML', 'Tailwind CSS', 'JavaScript'],
+    category: 'Landing Page',
+    liveUrl: 'https://ansalking150.github.io/tailwind-project-APPEXY/',
+    githubUrl: 'https://github.com/ansalking150/tailwind-project-APPEXY'
   },
   {
     id: 2,
-    title: 'ShopHub E-commerce',
-    description: 'Full-featured online shopping platform with advanced filtering, cart management, and secure checkout process.',
-    image: 'https://images.unsplash.com/photo-1658297063569-162817482fb6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjBvbmxpbmUlMjBzaG9wcGluZyUyMHdlYnNpdGV8ZW58MXx8fHwxNzY5NjQ5OTAzfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    technologies: ['Next.js', 'Redux', 'Stripe', 'Node.js'],
-    category: 'E-commerce',
-    liveUrl: '#',
-    githubUrl: '#'
+    title: 'Food Lover Restaurant',
+    description: 'A beautiful restaurant website featuring special offers, menu items, and food gallery. Over 25+ years of culinary experience.',
+    image: '/src/images/food lover page.png',
+    technologies: ['HTML', 'CSS', 'JavaScript'],
+    category: 'Web App',
+    liveUrl: 'https://ansalking150.github.io/restaurant-page-with-js/',
+    githubUrl: 'https://github.com/ansalking150/restaurant-page-with-js'
   },
   {
     id: 3,
-    title: 'Analytics Dashboard',
-    description: 'Real-time analytics dashboard with interactive charts, data visualization, and comprehensive reporting tools.',
-    image: 'https://images.unsplash.com/photo-1644127307101-f34996697a3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkYXNoYm9hcmQlMjBhbmFseXRpY3N8ZW58MXx8fHwxNzY5NzMxMzEzfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    technologies: ['React', 'D3.js', 'Recharts', 'REST API'],
-    category: 'Dashboard',
-    liveUrl: '#',
-    githubUrl: '#'
+    title: 'FURNI - Interior Design Studio',
+    description: 'Modern interior design studio website with e-commerce features, product showcase, and customer testimonials.',
+    image: '/src/images/furni page.png',
+    technologies: ['HTML', 'CSS', 'JavaScript'],
+    category: 'E-commerce',
+    liveUrl: 'https://ansalking150.github.io/FURNI-page/',
+    githubUrl: 'https://github.com/ansalking150/FURNI-page'
   },
   {
     id: 4,
-    title: 'SaaS Platform',
-    description: 'Modern SaaS platform with subscription management, user authentication, and intuitive admin panel.',
-    image: 'https://images.unsplash.com/photo-1669023414162-5bb06bbff0ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzYWFzJTIwcGxhdGZvcm0lMjBzb2Z0d2FyZSUyMGludGVyZmFjZXxlbnwxfHx8fDE3Njk3MzEzMTN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    technologies: ['React', 'Express', 'MongoDB', 'JWT'],
-    category: 'Web App',
-    liveUrl: '#',
-    githubUrl: '#'
+    title: 'Strict - Minimalist Design',
+    description: 'Simple and pure design landing page with clean aesthetics and minimalist approach to web design.',
+    image: '/src/images/Strict page.png',
+    technologies: ['HTML', 'CSS'],
+    category: 'Landing Page',
+    liveUrl: 'https://ansalking150.github.io/strict-page/',
+    githubUrl: 'https://github.com/ansalking150/strict-page'
   },
   {
     id: 5,
-    title: 'Creative Portfolio',
-    description: 'Stunning portfolio website showcasing creative work with smooth animations and modern design patterns.',
-    image: 'https://images.unsplash.com/photo-1710799885122-428e63eff691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb3J0Zm9saW8lMjBjcmVhdGl2ZSUyMGRlc2lnbiUyMHdlYnNpdGV8ZW58MXx8fHwxNzY5NzMxMzE0fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    technologies: ['Next.js', 'Framer Motion', 'Tailwind CSS', 'Sanity'],
+    title: 'Clever Craftsman',
+    description: 'Professional home repair and maintenance services website offering plumbing, electrical, and general maintenance solutions.',
+    image: '/src/images/craftsman page.png',
+    technologies: ['HTML', 'CSS', 'JavaScript'],
     category: 'Landing Page',
-    liveUrl: '#',
-    githubUrl: '#'
-  },
-  {
-    id: 6,
-    title: 'Enterprise Dashboard',
-    description: 'Comprehensive enterprise-level dashboard with advanced data management, reporting, and team collaboration features.',
-    image: 'https://images.unsplash.com/photo-1717996563514-e3519f9ef9f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3ZWIlMjBhcHBsaWNhdGlvbiUyMGludGVyZmFjZXxlbnwxfHx8fDE3Njk3MzEzMTJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    technologies: ['React', 'TypeScript', 'GraphQL', 'PostgreSQL'],
-    category: 'Dashboard',
-    liveUrl: '#',
-    githubUrl: '#'
+    liveUrl: 'https://ansalking150.github.io/craftsman-page/',
+    githubUrl: 'https://github.com/ansalking150/craftsman-page'
   }
 ];
 
@@ -146,7 +136,7 @@ export function Projects() {
             Want to see more? Check out my GitHub for additional projects and contributions.
           </p>
           <a
-            href="https://github.com"
+            href="https://github.com/ansalking150"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-surface border border-border-custom rounded-lg text-text-primary hover:border-primary hover:text-primary hover:shadow-[0_0_25px_rgba(255,26,26,0.2)] transition-all"
