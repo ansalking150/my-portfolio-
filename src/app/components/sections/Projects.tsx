@@ -19,7 +19,7 @@ const projects = [
     id: 2,
     title: 'Food Lover Restaurant',
     description: 'A beautiful restaurant website featuring special offers, menu items, and food gallery. Over 25+ years of culinary experience.',
-    image: '/food-lover-page.png',
+    image: 'src\images\food-lover-page.png',
     technologies: ['HTML', 'CSS', 'JavaScript'],
     category: 'Web App',
     liveUrl: 'https://ansalking150.github.io/restaurant-page-with-js/',

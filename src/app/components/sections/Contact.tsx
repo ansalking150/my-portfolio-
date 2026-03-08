@@ -8,14 +8,14 @@ const contactInfo = [
   {
     icon: <Mail size={24} />,
     title: 'Email',
-    value: 'anas.ahmed@example.com',
+    value: 'anaslking150@gmail.com',
     link: 'mailto:anas.ahmed@example.com'
   },
   {
     icon: <Phone size={24} />,
     title: 'Phone',
-    value: '+1 (555) 123-4567',
-    link: 'tel:+15551234567'
+    value: '01284838592',
+    link: 'tel:+01284838592'
   },
   {
     icon: <MapPin size={24} />,
@@ -26,7 +26,7 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: <Github size={20} />, name: 'GitHub', url: 'https://github.com' },
+  { icon: <Github size={20} />, name: 'GitHub', url: 'https://github.com/ansalking150' },
   { icon: <Linkedin size={20} />, name: 'LinkedIn', url: 'https://linkedin.com' },
   { icon: <Twitter size={20} />, name: 'Twitter', url: 'https://twitter.com' }
 ];
