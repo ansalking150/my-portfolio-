@@ -8,7 +8,7 @@ const skillCategories = [
     icon: <Code size={24} />,
     skills: [
       { name: 'React / Next.js', percentage: 95 },
-      { name: 'TypeScript / JavaScript', percentage: 90 },
+      { name: '  JavaScript', percentage: 90 },
       { name: 'HTML5 / CSS3', percentage: 95 }
     ]
   },
@@ -17,8 +17,7 @@ const skillCategories = [
     icon: <Palette size={24} />,
     skills: [
       { name: 'Tailwind CSS', percentage: 92 },
-      { name: 'CSS-in-JS / Styled Components', percentage: 85 },
-      { name: 'Sass / SCSS', percentage: 88 }
+      { name: 'CSS-in-JS / Styled Components', percentage: 85 }
     ]
   },
   {

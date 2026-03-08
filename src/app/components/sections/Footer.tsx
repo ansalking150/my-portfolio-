@@ -16,7 +16,7 @@ const footerLinks = {
   ],
   Connect: [
     { name: 'GitHub', href: 'https://github.com' },
-    { name: 'LinkedIn', href: 'https://linkedin.com' },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ans-ahmed-106a33362?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
     { name: 'Twitter', href: 'https://twitter.com' },
     { name: 'Email', href: 'mailto:anas.ahmed@example.com' }
   ]

@@ -1,15 +1,16 @@
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, CheckCircle, XCircle } from 'lucide-react';
 import { Input, Textarea } from '../Input';
 import { Button } from '../Button';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const contactInfo = [
   {
     icon: <Mail size={24} />,
     title: 'Email',
     value: 'anaslking150@gmail.com',
-    link: 'mailto:anas.ahmed@example.com'
+    link: 'mailto:anaslking150@gmail.com'
   },
   {
     icon: <Phone size={24} />,
@@ -27,7 +28,7 @@ const contactInfo = [
 
 const socialLinks = [
   { icon: <Github size={20} />, name: 'GitHub', url: 'https://github.com/ansalking150' },
-  { icon: <Linkedin size={20} />, name: 'LinkedIn', url: 'https://linkedin.com' },
+  { icon: <Linkedin size={20} />, name: 'LinkedIn', url: 'https://www.linkedin.com/in/ans-ahmed-106a33362?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
   { icon: <Twitter size={20} />, name: 'Twitter', url: 'https://twitter.com' }
 ];
 
@@ -38,11 +39,42 @@ export function Contact() {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // Replace these with your EmailJS credentials
+      const serviceId = 'service_k2i15lt';
+      const templateId = 'template_3nro14v';
+      const publicKey = '_3RFk7XqE1H7OmRMV';
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'anaslking150@gmail.com'
+        },
+        publicKey
+      );
+
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -208,9 +240,47 @@ export function Contact() {
                 required
               />
 
-              <Button type="submit" variant="primary" size="lg" className="w-full">
-                <Send size={20} className="mr-2" />
-                Send Message
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-500"
+                >
+                  <CheckCircle size={20} />
+                  <span>Message sent successfully! I'll get back to you soon.</span>
+                </motion.div>
+              )}
+
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-500"
+                >
+                  <XCircle size={20} />
+                  <span>Failed to send message. Please try again or email me directly.</span>
+                </motion.div>
+              )}
+
+              <Button 
+                type="submit" 
+                variant="primary" 
+                size="lg" 
+                className="w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={20} className="mr-2" />
+                    Send Message
+                  </>
+                )}
               </Button>
             </form>
           </motion.div>

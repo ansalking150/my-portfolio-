@@ -129,44 +129,11 @@ export function Hero() {
             transition={{ delay: 0.6 }}
             className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-16"
           >
-            {[
-              { number: '5+', label: 'Years Experience' },
-              { number: '50+', label: 'Projects Completed' },
-              { number: '30+', label: 'Happy Clients' }
-            ].map((stat, index) => (
-              <div key={index} className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent-glow/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative p-4 bg-surface/50 backdrop-blur-sm border border-border-custom rounded-lg hover:border-primary/50 transition-all">
-                  <div className="font-heading-alt text-3xl sm:text-4xl text-primary mb-1">
-                    {stat.number}
-                  </div>
-                  <div className="text-text-secondary text-xs sm:text-sm">
-                    {stat.label}
-                  </div>
-                </div>
-              </div>
-            ))}
+      
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center gap-2 cursor-pointer"
-          onClick={() => scrollToSection('#about')}
-        >
-          <span className="text-text-secondary text-sm">Scroll Down</span>
-          <ChevronDown className="text-primary" size={24} />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
