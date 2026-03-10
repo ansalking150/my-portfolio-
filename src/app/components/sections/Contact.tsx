@@ -21,7 +21,7 @@ const contactInfo = [
   {
     icon: <MapPin size={24} />,
     title: 'Location',
-    value: 'San Francisco, CA',
+    value: 'Alexandria, Egypt',
     link: '#'
   }
 ];
