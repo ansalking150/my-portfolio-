@@ -10,11 +10,11 @@ This portfolio highlights my experience in building clean, interactive, and user
 
 ## Screenshot
 
-![Portfolio Screenshot](YOUR_SCREENSHOT_LINK_HERE)
+![Portfolio Screenshot](https://drive.google.com/drive/folders/1cApS8pEbiPRuTaUF1645DxKE_W3TXnQJ?usp=sharing)
 
 ## Live Demo
 
-[View Live Demo](YOUR_LIVE_DEMO_LINK_HERE)
+[View Live Demo](https://drive.google.com/file/d/1mltYUUxARPAzq2m6HV144yAJ-1juQ7Mw/view?usp=sharing)
 
 ## Technologies Used
 
