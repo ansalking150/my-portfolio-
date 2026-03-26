@@ -10,7 +10,7 @@ This portfolio highlights my experience in building clean, interactive, and user
 
 ## Screenshot
 
-![Portfolio Screenshot](https://drive.google.com/drive/folders/1cApS8pEbiPRuTaUF1645DxKE_W3TXnQJ?usp=sharing)
+![Portfolio Screenshot](https://drive.google.com/file/d/17RCJqqwHlGGGCOWcFv05aqiRnVUVClYa/view?usp=sharing)
 
 ## Live Demo
 
