@@ -14,7 +14,7 @@ This portfolio highlights my experience in building clean, interactive, and user
 
 ## Live Demo link
 
-[View Live Demo](https://drive.google.com/file/d/1mltYUUxARPAzq2m6HV144yAJ-1juQ7Mw/view?usp=sharing)
+[View Live Demo](https://drive.google.com/file/d/1mltYUUxARPAzq2m6HV144yAJ-1juQ7Mw/view)
 
 ## Technologies Used
 
