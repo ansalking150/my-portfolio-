@@ -33,3 +33,11 @@ This portfolio highlights my experience in building clean, interactive, and user
 - Contact section
 - Smooth and interactive user experience
 
+## Setup Instructions
+
+Follow these steps to run the project locally:
+
+1. Clone the repository:
+   ```bash
+   git clone (https://github.com/ansalking150/my-portfolio-.git)
+
