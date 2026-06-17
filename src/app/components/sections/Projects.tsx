@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ProjectCard } from '../ProjectCard';
+import pxStoreImage from '@/images/Px-store.png';
 import restaurantImage from '@/images/food-lover-page.png';
 import furniImage from '@/images/furni-page.png';
 import appexyImage from '@/images/apexy-page.png';
@@ -8,6 +9,15 @@ import strictImage from '@/images/strict-page.png';
 import craftsmanImage from '@/images/craftsman-page.png';
 
 const projects = [
+  {
+    id: 0,
+    title: 'PX Store',
+    description: 'A next-gen gaming e-commerce store specialising in PlayStation 5, PlayStation 4, games, accessories, and gift cards — featuring a futuristic dark UI with 3D animations and a seamless shopping experience.',
+    technologies: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript'],
+    category: 'E-Commerce',
+    liveUrl: 'https://px-store.vercel.app/',
+    image: pxStoreImage
+  },
   {
     id: 1,
     title: 'Restaurant Page with JS',
@@ -55,7 +65,7 @@ const projects = [
   }
 ];
 
-const categories = ['All', 'Web App', 'Landing Page'];
+const categories = ['All', 'E-Commerce', 'Web App', 'Landing Page'];
 
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
