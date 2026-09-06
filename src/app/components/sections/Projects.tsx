@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ProjectCard } from '../ProjectCard';
+import { useTranslation } from '@/lib/i18n';
 import pxStoreImage from '@/images/Px-store.png';
 import restaurantImage from '@/images/food-lover-page.png';
 import furniImage from '@/images/furni-page.png';
@@ -8,11 +9,10 @@ import appexyImage from '@/images/apexy-page.png';
 import strictImage from '@/images/strict-page.png';
 import craftsmanImage from '@/images/craftsman-page.png';
 
-const projects = [
+// Static project data — titles and descriptions are looked up via translation keys
+const projectsData = [
   {
     id: 0,
-    title: 'NEGM GLOBAL TEX',
-    description: 'A bilingual (Arabic/English) e-commerce and corporate website for a uniform and garment manufacturing company, featuring a product catalog organized by industry and WhatsApp-based checkout.',
     technologies: ['React', 'Vite', 'SEO'],
     category: 'Corporate',
     liveUrl: 'https://www.hegazytexgroup.com',
@@ -20,8 +20,6 @@ const projects = [
   },
   {
     id: 1,
-    title: 'PX Store',
-    description: 'A next-gen gaming e-commerce store specialising in PlayStation 5, PlayStation 4, games, accessories, and gift cards — featuring a futuristic dark UI with 3D animations and a seamless shopping experience.',
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript'],
     category: 'E-Commerce',
     liveUrl: 'https://px-store.vercel.app/',
@@ -29,8 +27,6 @@ const projects = [
   },
   {
     id: 2,
-    title: 'Restaurant Page with JS',
-    description: 'A modern restaurant website with interactive JavaScript features, clean layout, and engaging user experience.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
     category: 'Web App',
     liveUrl: 'https://ansalking150.github.io/restaurant-page-with-js/',
@@ -38,8 +34,6 @@ const projects = [
   },
   {
     id: 3,
-    title: 'FURNI Page',
-    description: 'A stylish furniture landing page with elegant sections, responsive design, and modern UI presentation.',
     technologies: ['HTML', 'CSS', 'Bootstrap'],
     category: 'Landing Page',
     liveUrl: 'https://ansalking150.github.io/FURNI-page/',
@@ -47,8 +41,6 @@ const projects = [
   },
   {
     id: 4,
-    title: 'APPEXY',
-    description: 'A modern landing page for an activity manager product with smooth layout, pricing, and marketing sections.',
     technologies: ['HTML', 'Tailwind CSS', 'JavaScript'],
     category: 'Landing Page',
     liveUrl: 'https://ansalking150.github.io/tailwind-project-APPEXY/',
@@ -56,8 +48,6 @@ const projects = [
   },
   {
     id: 5,
-    title: 'Strict Page',
-    description: 'A clean and professional website template with strong typography, structured sections, and responsive layout.',
     technologies: ['HTML', 'CSS'],
     category: 'Landing Page',
     liveUrl: 'https://ansalking150.github.io/strict-page/',
@@ -65,8 +55,6 @@ const projects = [
   },
   {
     id: 6,
-    title: 'Craftsman Page',
-    description: 'A polished business-style website with professional design, strong branding, and responsive sections.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
     category: 'Landing Page',
     liveUrl: 'https://ansalking150.github.io/craftsman-page/',
@@ -74,8 +62,6 @@ const projects = [
   },
   {
     id: 7,
-    title: 'Watches Store',
-    description: 'A modern watches store website with a sleek design and interactive features.',
     technologies: ['HTML', 'Tailwind', 'JavaScript'],
     category: 'E-Commerce',
     liveUrl: 'https://watches-store-wave.vercel.app/',
@@ -83,8 +69,6 @@ const projects = [
   },
   {
     id: 8,
-    title: 'Handmade Store',
-    description: 'A premium e-commerce platform showcasing authentic Egyptian artisan crafts, heritage pieces, and sustainable luxury ceramics.',
     technologies: ['HTML', 'Tailwind', 'Alpine.js', 'JavaScript'],
     category: 'E-Commerce',
     liveUrl: 'https://mohamed-waled301.github.io/handmade/',
@@ -92,8 +76,6 @@ const projects = [
   },
   {
     id: 9,
-    title: 'Tech Store',
-    description: 'A store for selling tech products with a sleek, modern design and interactive features.',
     technologies: ['HTML', 'Tailwind', 'JavaScript', 'Chart.js'],
     category: 'E-Commerce',
     liveUrl: 'https://omartantawy360.github.io/elctro-shop/',
@@ -101,8 +83,6 @@ const projects = [
   },
   {
     id: 10,
-    title: 'Malaz Caffe',
-    description: 'A modern coffee shop website with an elegant design and seamless user experience.',
     technologies: ['HTML', 'Tailwind', 'JavaScript'],
     category: 'Landing Page',
     liveUrl: 'https://cafee-pink.vercel.app/',
@@ -110,8 +90,6 @@ const projects = [
   },
   {
     id: 11,
-    title: 'Academic Enterprise',
-    description: 'A platform for academic institutions to showcase their programs and research.',
     technologies: ['HTML', 'Tailwind', 'JavaScript'],
     category: 'Web App',
     liveUrl: 'https://omartantawy360.github.io/Acadimic-center2/',
@@ -119,8 +97,6 @@ const projects = [
   },
   {
     id: 12,
-    title: 'Travel Agency',
-    description: 'Mobile-first marketing site for a modern neobank.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
     category: 'Landing Page',
     liveUrl: 'https://abdotete142-maker.github.io/Salah_khalaf/',
@@ -128,8 +104,6 @@ const projects = [
   },
   {
     id: 13,
-    title: 'Flagxin',
-    description: 'Flags shop website with a sleek design and interactive features.',
     technologies: ['HTML', 'Tailwind', 'JavaScript'],
     category: 'E-Commerce',
     liveUrl: 'https://abdelrhman005.github.io/Flagxin/',
@@ -137,8 +111,6 @@ const projects = [
   },
   {
     id: 14,
-    title: 'Aurum Shop',
-    description: 'A modern perfume shop website with a sleek design and interactive features.',
     technologies: ['HTML', 'Tailwind', 'JavaScript'],
     category: 'E-Commerce',
     liveUrl: 'https://abdotete142-maker.github.io/Perfumes/',
@@ -146,8 +118,6 @@ const projects = [
   },
   {
     id: 15,
-    title: 'Apex Gym',
-    description: 'A modern fitness center website with a sleek design and interactive features.',
     technologies: ['HTML', 'Tailwind', 'JavaScript'],
     category: 'Landing Page',
     liveUrl: 'https://gym1-khaki-omega.vercel.app/',
@@ -155,8 +125,6 @@ const projects = [
   },
   {
     id: 16,
-    title: 'Furni Store',
-    description: 'A modern furniture store website with a sleek design and interactive features.',
     technologies: ['HTML', 'Tailwind', 'JavaScript'],
     category: 'E-Commerce',
     liveUrl: 'https://lander2007.github.io/Furni/index.html',
@@ -164,8 +132,6 @@ const projects = [
   },
   {
     id: 17,
-    title: 'Savior Restaurant',
-    description: 'A modern restaurant website with a sleek design and interactive features.',
     technologies: ['HTML', 'Tailwind', 'JavaScript'],
     category: 'Landing Page',
     liveUrl: 'https://savior-rosy.vercel.app/',
@@ -173,8 +139,6 @@ const projects = [
   },
   {
     id: 18,
-    title: 'Portofloi Website',
-    description: 'A modern portfolio website with a sleek design and interactive features.',
     technologies: ['HTML', 'Tailwind', 'JavaScript'],
     category: 'Web App',
     liveUrl: 'https://omartantawy360.github.io/udimy-porto/index.html',
@@ -182,8 +146,6 @@ const projects = [
   },
   {
     id: 19,
-    title: 'EduComp',
-    description: 'A comprehensive student competition portal and dashboard for WE School, facilitating registration, team browsing, and leaderboard tracking.',
     technologies: ['React', 'Node.js', 'Tailwind', 'JavaScript'],
     category: 'Web App',
     liveUrl: 'https://omartantawy360.github.io/edu-por-3/student',
@@ -191,8 +153,6 @@ const projects = [
   },
   {
     id: 20,
-    title: 'Maison',
-    description: 'A premium high-end e-commerce fashion website featuring a minimalist quiet luxury aesthetic and responsive design.',
     technologies: ['React', 'Tailwind', 'JavaScript'],
     category: 'E-Commerce',
     liveUrl: 'https://maison-nine-wheat.vercel.app/',
@@ -200,10 +160,27 @@ const projects = [
   },
 ];
 
-const categories = ['All', 'Corporate', 'E-Commerce', 'Web App', 'Landing Page'];
+// Maps English category value → translation key
+const categoryKeys: Record<string, string> = {
+  'All':          'projects-cat-all',
+  'Corporate':    'projects-cat-corporate',
+  'E-Commerce':   'projects-cat-ecommerce',
+  'Web App':      'projects-cat-webapp',
+  'Landing Page': 'projects-cat-landing',
+};
+
+const categoryValues = ['All', 'Corporate', 'E-Commerce', 'Web App', 'Landing Page'];
 
 export function Projects() {
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('All');
+
+  // Build translated project list on every render (re-renders when lang changes)
+  const projects = projectsData.map(p => ({
+    ...p,
+    title: t(`project-${p.id}-title`),
+    description: t(`project-${p.id}-desc`),
+  }));
 
   const filteredProjects = activeCategory === 'All'
     ? projects
@@ -230,13 +207,13 @@ export function Projects() {
             viewport={{ once: true }}
             className="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-4"
           >
-            <span className="text-primary font-medium">MY WORK</span>
+            <span className="text-primary font-medium">{t('projects-badge')}</span>
           </motion.div>
           <h2 className="font-heading text-4xl md:text-5xl text-text-primary mb-4">
-            Featured <span className="text-primary">Projects</span>
+            {t('projects-heading')} <span className="text-primary">{t('projects-heading-highlight')}</span>
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto">
-            Explore my latest work and creative solutions
+            {t('projects-subtitle')}
           </p>
         </motion.div>
 
@@ -247,19 +224,19 @@ export function Projects() {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
-          {categories.map((category) => (
+          {categoryValues.map((cat) => (
             <motion.button
-              key={category}
-              onClick={() => setActiveCategory(category)}
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`px-6 py-2 rounded-full font-medium transition-all ${
-                activeCategory === category
+                activeCategory === cat
                   ? 'bg-primary text-white shadow-[0_0_20px_rgba(255,26,26,0.4)]'
                   : 'bg-surface border border-border-custom text-text-secondary hover:border-primary hover:text-primary'
               }`}
             >
-              {category}
+              {t(categoryKeys[cat])}
             </motion.button>
           ))}
         </motion.div>
@@ -287,7 +264,7 @@ export function Projects() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-primary/80 text-white rounded-full font-medium hover:shadow-[0_0_30px_rgba(255,26,26,0.5)] transition-all"
           >
-            View More on GitHub
+            {t('projects-github-cta')}
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

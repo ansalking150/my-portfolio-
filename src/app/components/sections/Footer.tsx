@@ -1,28 +1,40 @@
 import { motion } from 'motion/react';
 import { Heart, ArrowUp } from 'lucide-react';
-
-const footerLinks = {
-  Navigation: [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' }
-  ],
-  Services: [
-    { name: 'Frontend Development', href: '#services' },
-    { name: 'UI/UX Implementation', href: '#services' },
-    { name: 'Web Applications', href: '#services' },
-    { name: 'Consulting', href: '#services' }
-  ],
-  Connect: [
-    { name: 'GitHub', href: 'https://github.com' },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ans-ahmed-106a33362?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
-    { name: 'Twitter', href: 'https://twitter.com' },
-    { name: 'Email', href: 'mailto:anas.ahmed@example.com' }
-  ]
-};
+import { useTranslation } from '@/lib/i18n';
 
 export function Footer() {
+  const { t } = useTranslation();
+
+  const footerLinks = {
+    nav: {
+      headingKey: 'footer-nav-heading',
+      links: [
+        { nameKey: 'footer-nav-home',     href: '#home' },
+        { nameKey: 'footer-nav-about',    href: '#about' },
+        { nameKey: 'footer-nav-skills',   href: '#skills' },
+        { nameKey: 'footer-nav-projects', href: '#projects' },
+      ],
+    },
+    services: {
+      headingKey: 'footer-services-heading',
+      links: [
+        { nameKey: 'footer-svc-frontend',  href: '#services' },
+        { nameKey: 'footer-svc-uiux',      href: '#services' },
+        { nameKey: 'footer-svc-webapps',   href: '#services' },
+        { nameKey: 'footer-svc-consulting',href: '#services' },
+      ],
+    },
+    connect: {
+      headingKey: 'footer-connect-heading',
+      links: [
+        { nameKey: 'footer-connect-github',   href: 'https://github.com' },
+        { nameKey: 'footer-connect-linkedin', href: 'https://www.linkedin.com/in/ans-ahmed-106a33362?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
+        { nameKey: 'footer-connect-twitter',  href: 'https://twitter.com' },
+        { nameKey: 'footer-connect-email',    href: 'mailto:anas.ahmed@example.com' },
+      ],
+    },
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -62,33 +74,32 @@ export function Footer() {
                   <h3 className="font-heading font-bold text-xl text-text-primary">
                     Anas Ahmed
                   </h3>
-                  <p className="text-xs text-text-secondary">Frontend Developer</p>
+                  <p className="text-xs text-text-secondary">{t('footer-role')}</p>
                 </div>
               </div>
               <p className="text-text-secondary leading-relaxed max-w-sm">
-                Crafting exceptional digital experiences with modern web technologies.
-                Passionate about clean code, beautiful design, and user-centric solutions.
+                {t('footer-tagline')}
               </p>
-              <div className="flex items-center gap-2 text-sm text-text-secondary">
-                <span>Made with</span>
+              <div className="flex items-center gap-2 text-sm text-text-secondary flex-wrap">
+                <span>{t('footer-made-with')}</span>
                 <Heart size={16} className="text-primary fill-primary animate-pulse" />
-                <span>using React & Tailwind CSS</span>
+                <span>{t('footer-made-with-tech')}</span>
               </div>
             </motion.div>
           </div>
 
           {/* Links Columns */}
-          {Object.entries(footerLinks).map(([category, links], columnIndex) => (
+          {Object.values(footerLinks).map((col, columnIndex) => (
             <motion.div
-              key={category}
+              key={columnIndex}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: columnIndex * 0.1 }}
             >
-              <h4 className="font-heading text-text-primary mb-4">{category}</h4>
+              <h4 className="font-heading text-text-primary mb-4">{t(col.headingKey)}</h4>
               <ul className="space-y-3">
-                {links.map((link, index) => (
+                {col.links.map((link, index) => (
                   <li key={index}>
                     <a
                       href={link.href}
@@ -101,7 +112,7 @@ export function Footer() {
                       className="text-text-secondary hover:text-primary transition-colors inline-flex items-center group"
                     >
                       <span className="group-hover:translate-x-1 transition-transform">
-                        {link.name}
+                        {t(link.nameKey)}
                       </span>
                     </a>
                   </li>
@@ -119,7 +130,7 @@ export function Footer() {
             viewport={{ once: true }}
             className="text-text-secondary text-sm"
           >
-            © {new Date().getFullYear()} Anas Ahmed Hasan. All rights reserved.
+            {t('footer-copyright')}
           </motion.p>
 
           <div className="flex items-center gap-6">
@@ -127,13 +138,13 @@ export function Footer() {
               href="#"
               className="text-text-secondary hover:text-primary text-sm transition-colors"
             >
-              Privacy Policy
+              {t('footer-privacy')}
             </a>
             <a
               href="#"
               className="text-text-secondary hover:text-primary text-sm transition-colors"
             >
-              Terms of Service
+              {t('footer-terms')}
             </a>
           </div>
         </div>
@@ -148,7 +159,7 @@ export function Footer() {
         whileTap={{ scale: 0.9 }}
         onClick={scrollToTop}
         className="fixed bottom-8 right-8 p-4 bg-primary text-white rounded-full shadow-[0_0_30px_rgba(255,26,26,0.5)] hover:shadow-[0_0_40px_rgba(255,26,26,0.7)] transition-all z-50 group"
-        aria-label="Scroll to top"
+        aria-label={t('footer-scroll-top')}
       >
         <ArrowUp size={24} className="group-hover:-translate-y-1 transition-transform" />
       </motion.button>

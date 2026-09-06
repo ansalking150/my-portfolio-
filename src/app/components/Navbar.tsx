@@ -2,26 +2,27 @@ import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './Button';
-
-const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Services', href: '#services' },
-  { name: 'Contact', href: '#contact' }
-];
+import { useTranslation } from '@/lib/i18n';
 
 export function Navbar() {
+  const { t, lang, setLang, isRTL } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
+  const navLinks = [
+    { key: 'nav-home',     href: '#home' },
+    { key: 'nav-about',    href: '#about' },
+    { key: 'nav-skills',   href: '#skills' },
+    { key: 'nav-projects', href: '#projects' },
+    { key: 'nav-services', href: '#services' },
+    { key: 'nav-contact',  href: '#contact' },
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
-      // Update active section based on scroll position
+
       const sections = navLinks.map(link => link.href.replace('#', ''));
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -37,6 +38,7 @@ export function Navbar() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const scrollToSection = (href: string) => {
@@ -46,6 +48,22 @@ export function Navbar() {
       setIsMobileMenuOpen(false);
     }
   };
+
+  const toggleLang = () => setLang(lang === 'en' ? 'ar' : 'en');
+
+  // Language toggle button — reused in both desktop & mobile top bar
+  const LangToggle = ({ className = '' }: { className?: string }) => (
+    <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={toggleLang}
+      aria-label={t('lang-toggle')}
+      className={`px-3 py-1.5 rounded-full border border-primary/40 text-primary text-sm font-medium
+        hover:bg-primary hover:text-white hover:border-primary transition-all ${className}`}
+    >
+      {t('lang-toggle')}
+    </motion.button>
+  );
 
   return (
     <>
@@ -74,7 +92,7 @@ export function Navbar() {
                 <h1 className="font-heading font-bold text-xl text-text-primary tracking-tight">
                   Anas Ahmed
                 </h1>
-                <p className="text-xs text-text-secondary">Frontend Developer</p>
+                <p className="text-xs text-text-secondary">{t('nav-role')}</p>
               </div>
             </motion.div>
 
@@ -82,11 +100,11 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
                 <button
-                  key={link.name}
+                  key={link.key}
                   onClick={() => scrollToSection(link.href)}
                   className="relative px-4 py-2 text-text-secondary hover:text-text-primary transition-colors group"
                 >
-                  <span className="relative z-10">{link.name}</span>
+                  <span className="relative z-10">{t(link.key)}</span>
                   {activeSection === link.href.replace('#', '') && (
                     <motion.div
                       layoutId="activeSection"
@@ -99,20 +117,25 @@ export function Navbar() {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className="hidden md:block">
+            {/* Desktop right side: lang toggle + CTA */}
+            <div className="hidden md:flex items-center gap-3">
+              <LangToggle />
               <Button variant="primary" size="sm" onClick={() => scrollToSection('#contact')}>
-                Get In Touch
+                {t('nav-cta')}
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-text-primary hover:text-primary transition-colors"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Mobile top-bar: lang toggle + hamburger */}
+            <div className="flex md:hidden items-center gap-2">
+              <LangToggle />
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 text-text-primary hover:text-primary transition-colors"
+                aria-label={isMobileMenuOpen ? t('nav-close-menu') : t('nav-open-menu')}
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
       </motion.nav>
@@ -120,22 +143,22 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, x: '100%' }}
+          initial={{ opacity: 0, x: isRTL ? '-100%' : '100%' }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: '100%' }}
+          exit={{ opacity: 0, x: isRTL ? '-100%' : '100%' }}
           className="fixed inset-0 z-40 bg-background-secondary/98 backdrop-blur-lg md:hidden pt-20"
         >
           <div className="flex flex-col items-center gap-6 p-8">
             {navLinks.map((link, index) => (
               <motion.button
-                key={link.name}
+                key={link.key}
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => scrollToSection(link.href)}
                 className="text-2xl font-heading text-text-primary hover:text-primary transition-colors relative group"
               >
-                {link.name}
+                {t(link.key)}
                 <span className="absolute -bottom-1 left-0 w-0 h-1 bg-gradient-to-r from-primary to-accent-glow group-hover:w-full transition-all duration-300" />
               </motion.button>
             ))}
@@ -146,7 +169,7 @@ export function Navbar() {
               className="mt-8"
             >
               <Button variant="primary" onClick={() => scrollToSection('#contact')}>
-                Get In Touch
+                {t('nav-cta')}
               </Button>
             </motion.div>
           </div>

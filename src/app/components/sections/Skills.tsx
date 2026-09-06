@@ -1,64 +1,72 @@
 import { motion } from 'motion/react';
 import { SkillBar } from '../SkillBar';
 import { Code, Database, Layout, Palette, Smartphone, Zap } from 'lucide-react';
-
-const skillCategories = [
-  {
-    title: 'Frontend Development',
-    icon: <Code size={24} />,
-    skills: [
-      { name: 'React / Next.js', percentage: 95 },
-      { name: '  JavaScript', percentage: 90 },
-      { name: 'HTML5 / CSS3', percentage: 95 }
-    ]
-  },
-  {
-    title: 'Styling & Design',
-    icon: <Palette size={24} />,
-    skills: [
-      { name: 'Tailwind CSS', percentage: 92 },
-      { name: 'CSS-in-JS / Styled Components', percentage: 85 }
-    ]
-  },
-  {
-    title: 'UI/UX Implementation',
-    icon: <Layout size={24} />,
-    skills: [
-      { name: 'Responsive Design', percentage: 95 },
-      { name: 'Figma to Code', percentage: 90 },
-      { name: 'Animation (Framer Motion)', percentage: 85 }
-    ]
-  },
-  {
-    title: 'Backend & Tools',
-    icon: <Database size={24} />,
-    skills: [
-      { name: 'Node.js / Express', percentage: 75 },
-      { name: 'REST APIs / GraphQL', percentage: 80 },
-      { name: 'Git / GitHub', percentage: 90 }
-    ]
-  },
-  {
-    title: 'Mobile & Performance',
-    icon: <Smartphone size={24} />,
-    skills: [
-      { name: 'Progressive Web Apps', percentage: 85 },
-      { name: 'Mobile-First Design', percentage: 92 },
-      { name: 'Performance Optimization', percentage: 88 }
-    ]
-  },
-  {
-    title: 'Modern Stack',
-    icon: <Zap size={24} />,
-    skills: [
-      { name: 'Vite / Webpack', percentage: 85 },
-      { name: 'Testing (Jest / React Testing Library)', percentage: 78 },
-      { name: 'CI/CD', percentage: 75 }
-    ]
-  }
-];
+import { useTranslation } from '@/lib/i18n';
 
 export function Skills() {
+  const { t } = useTranslation();
+
+  const skillCategories = [
+    {
+      titleKey: 'skills-cat-frontend',
+      icon: <Code size={24} />,
+      skills: [
+        { name: 'React / Next.js', percentage: 95 },
+        { name: 'JavaScript', percentage: 90 },
+        { name: 'HTML5 / CSS3', percentage: 95 },
+      ],
+    },
+    {
+      titleKey: 'skills-cat-styling',
+      icon: <Palette size={24} />,
+      skills: [
+        { name: 'Tailwind CSS', percentage: 92 },
+        { name: 'CSS-in-JS / Styled Components', percentage: 85 },
+      ],
+    },
+    {
+      titleKey: 'skills-cat-uiux',
+      icon: <Layout size={24} />,
+      skills: [
+        { name: 'Responsive Design', percentage: 95 },
+        { name: 'Figma to Code', percentage: 90 },
+        { name: 'Animation (Framer Motion)', percentage: 85 },
+      ],
+    },
+    {
+      titleKey: 'skills-cat-backend',
+      icon: <Database size={24} />,
+      skills: [
+        { name: 'Node.js / Express', percentage: 75 },
+        { name: 'REST APIs / GraphQL', percentage: 80 },
+        { name: 'Git / GitHub', percentage: 90 },
+      ],
+    },
+    {
+      titleKey: 'skills-cat-mobile',
+      icon: <Smartphone size={24} />,
+      skills: [
+        { name: 'Progressive Web Apps', percentage: 85 },
+        { name: 'Mobile-First Design', percentage: 92 },
+        { name: 'Performance Optimization', percentage: 88 },
+      ],
+    },
+    {
+      titleKey: 'skills-cat-modern',
+      icon: <Zap size={24} />,
+      skills: [
+        { name: 'Vite / Webpack', percentage: 85 },
+        { name: 'Testing (Jest / RTL)', percentage: 78 },
+        { name: 'CI/CD', percentage: 75 },
+      ],
+    },
+  ];
+
+  const otherTools = [
+    'Redux', 'Zustand', 'React Query', 'Docker', 'AWS', 'Firebase',
+    'MongoDB', 'PostgreSQL', 'Prisma', 'tRPC', 'Storybook', 'Radix UI',
+  ];
+
   return (
     <section id="skills" className="py-24 relative overflow-hidden bg-background-secondary">
       {/* Background Pattern */}
@@ -74,9 +82,11 @@ export function Skills() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-primary font-heading text-sm uppercase tracking-widest">My Expertise</span>
+          <span className="text-primary font-heading text-sm uppercase tracking-widest">
+            {t('skills-label')}
+          </span>
           <h2 className="font-heading-alt text-5xl sm:text-6xl text-text-primary mt-4 mb-6">
-            SKILLS & TECHNOLOGIES
+            {t('skills-heading')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
         </motion.div>
@@ -102,7 +112,7 @@ export function Skills() {
                     {category.icon}
                   </div>
                   <h3 className="font-heading text-xl text-text-primary group-hover:text-primary transition-colors">
-                    {category.title}
+                    {t(category.titleKey)}
                   </h3>
                 </div>
 
@@ -125,7 +135,7 @@ export function Skills() {
           ))}
         </div>
 
-        {/* Additional Tools/Technologies */}
+        {/* Other Tools */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -133,13 +143,10 @@ export function Skills() {
           className="mt-16 text-center"
         >
           <h3 className="font-heading text-xl text-text-primary mb-6">
-            Other Tools & Technologies
+            {t('skills-tools-heading')}
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {[
-              'Redux', 'Zustand', 'React Query', 'Docker', 'AWS', 'Firebase',
-              'MongoDB', 'PostgreSQL', 'Prisma', 'tRPC', 'Storybook', 'Radix UI'
-            ].map((tool, index) => (
+            {otherTools.map((tool, index) => (
               <motion.span
                 key={index}
                 initial={{ opacity: 0, scale: 0.8 }}

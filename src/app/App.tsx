@@ -9,25 +9,12 @@ import { Footer } from './components/sections/Footer';
 import { LoadingSpinner } from './components/LoadingSpinner';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { LanguageProvider } from '@/lib/i18n';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Set document title and meta tags
-    document.title = 'Anas Ahmed Hasan - Frontend Developer & UI Engineer';
-    
-    // Set meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Professional frontend developer specializing in React, TypeScript, and modern web technologies. Creating beautiful, high-performance web applications.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Professional frontend developer specializing in React, TypeScript, and modern web technologies. Creating beautiful, high-performance web applications.';
-      document.head.appendChild(meta);
-    }
-    
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -37,7 +24,7 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <LanguageProvider>
       <AnimatePresence mode="wait">
         {isLoading ? (
           <motion.div
@@ -68,6 +55,6 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </LanguageProvider>
   );
 }

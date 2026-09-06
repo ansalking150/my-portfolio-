@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { ExternalLink, Github } from 'lucide-react';
+import { useTranslation } from '@/lib/i18n';
 
 interface ProjectCardProps {
   title: string;
@@ -20,6 +21,8 @@ export function ProjectCard({
   githubUrl,
   category
 }: ProjectCardProps) {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -36,7 +39,7 @@ export function ProjectCard({
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-        
+
         {/* Category Badge */}
         <div className="absolute top-4 right-4 px-3 py-1 bg-primary/90 backdrop-blur-sm text-white text-xs font-medium rounded-full">
           {category}
@@ -49,6 +52,7 @@ export function ProjectCard({
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={t('card-live-demo')}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="p-3 bg-primary rounded-full text-white shadow-[0_0_20px_rgba(255,26,26,0.5)] hover:shadow-[0_0_30px_rgba(255,26,26,0.7)]"
@@ -61,6 +65,7 @@ export function ProjectCard({
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={t('card-view-project')}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="p-3 bg-surface border border-primary rounded-full text-primary shadow-[0_0_20px_rgba(255,26,26,0.3)] hover:shadow-[0_0_30px_rgba(255,26,26,0.5)]"

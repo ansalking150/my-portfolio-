@@ -1,5 +1,5 @@
 /* Red Dragon Portfolio - Typography */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700;800&display=swap');
 
 :root {
   --font-heading: 'Space Grotesk', sans-serif;
@@ -9,4 +9,17 @@
 
 body {
   font-family: var(--font-body);
+}
+
+/* ── Arabic / RTL overrides ─────────────────────────────────────────────── */
+[lang="ar"] {
+  --font-body: 'Cairo', sans-serif;
+  --font-heading: 'Cairo', sans-serif;
+}
+
+/* Bebas Neue has no Arabic glyphs — swap it out for Cairo Bold */
+[lang="ar"] .font-heading-alt {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0;
 }
