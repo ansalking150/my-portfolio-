@@ -10,62 +10,22 @@ import strictImage from '@/images/strict-page.png';
 import craftsmanImage from '@/images/craftsman-page.png';
 
 // Static project data — titles and descriptions are looked up via translation keys
+// Order: Watches Store first → rest of new projects → original 6 at the bottom
 const projectsData = [
-  {
-    id: 0,
-    technologies: ['React', 'Vite', 'SEO'],
-    category: 'Corporate',
-    liveUrl: 'https://www.hegazytexgroup.com',
-    image: '/my-portfolio-/images/hegazytexgroup.png',
-  },
-  {
-    id: 1,
-    technologies: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript'],
-    category: 'E-Commerce',
-    liveUrl: 'https://px-store.vercel.app/',
-    image: pxStoreImage,
-  },
-  {
-    id: 2,
-    technologies: ['HTML', 'CSS', 'JavaScript'],
-    category: 'Web App',
-    liveUrl: 'https://ansalking150.github.io/restaurant-page-with-js/',
-    image: restaurantImage,
-  },
-  {
-    id: 3,
-    technologies: ['HTML', 'CSS', 'Bootstrap'],
-    category: 'Landing Page',
-    liveUrl: 'https://ansalking150.github.io/FURNI-page/',
-    image: furniImage,
-  },
-  {
-    id: 4,
-    technologies: ['HTML', 'Tailwind CSS', 'JavaScript'],
-    category: 'Landing Page',
-    liveUrl: 'https://ansalking150.github.io/tailwind-project-APPEXY/',
-    image: appexyImage,
-  },
-  {
-    id: 5,
-    technologies: ['HTML', 'CSS'],
-    category: 'Landing Page',
-    liveUrl: 'https://ansalking150.github.io/strict-page/',
-    image: strictImage,
-  },
-  {
-    id: 6,
-    technologies: ['HTML', 'CSS', 'JavaScript'],
-    category: 'Landing Page',
-    liveUrl: 'https://ansalking150.github.io/craftsman-page/',
-    image: craftsmanImage,
-  },
+  // ── New projects (shown first) ─────────────────────────────────────────────
   {
     id: 7,
     technologies: ['HTML', 'Tailwind', 'JavaScript'],
     category: 'E-Commerce',
     liveUrl: 'https://watches-store-wave.vercel.app/',
     image: '/my-portfolio-/images/watches-store.png',
+  },
+  {
+    id: 0,
+    technologies: ['React', 'Vite', 'SEO'],
+    category: 'Corporate',
+    liveUrl: 'https://www.hegazytexgroup.com',
+    image: '/my-portfolio-/images/hegazytexgroup.png',
   },
   {
     id: 8,
@@ -157,6 +117,49 @@ const projectsData = [
     category: 'E-Commerce',
     liveUrl: 'https://maison-nine-wheat.vercel.app/',
     image: '/my-portfolio-/images/maison.png',
+  },
+  // ── Original projects (shown last) ────────────────────────────────────────
+  {
+    id: 1,
+    technologies: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript'],
+    category: 'E-Commerce',
+    liveUrl: 'https://px-store.vercel.app/',
+    image: pxStoreImage,
+  },
+  {
+    id: 2,
+    technologies: ['HTML', 'CSS', 'JavaScript'],
+    category: 'Web App',
+    liveUrl: 'https://ansalking150.github.io/restaurant-page-with-js/',
+    image: restaurantImage,
+  },
+  {
+    id: 3,
+    technologies: ['HTML', 'CSS', 'Bootstrap'],
+    category: 'Landing Page',
+    liveUrl: 'https://ansalking150.github.io/FURNI-page/',
+    image: furniImage,
+  },
+  {
+    id: 4,
+    technologies: ['HTML', 'Tailwind CSS', 'JavaScript'],
+    category: 'Landing Page',
+    liveUrl: 'https://ansalking150.github.io/tailwind-project-APPEXY/',
+    image: appexyImage,
+  },
+  {
+    id: 5,
+    technologies: ['HTML', 'CSS'],
+    category: 'Landing Page',
+    liveUrl: 'https://ansalking150.github.io/strict-page/',
+    image: strictImage,
+  },
+  {
+    id: 6,
+    technologies: ['HTML', 'CSS', 'JavaScript'],
+    category: 'Landing Page',
+    liveUrl: 'https://ansalking150.github.io/craftsman-page/',
+    image: craftsmanImage,
   },
 ];
 

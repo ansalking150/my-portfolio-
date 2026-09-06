@@ -126,9 +126,15 @@ export function About() {
 
             {/* CTA */}
             <div className="pt-6">
-              <Button variant="primary" size="lg">
-                {t('about-cta')}
-              </Button>
+              <a
+                href={`${import.meta.env.BASE_URL}Anas_Ahmed_CV.pdf`}
+                download="Anas_Ahmed_CV.pdf"
+                aria-label={t('about-cta')}
+              >
+                <Button variant="primary" size="lg">
+                  {t('about-cta')}
+                </Button>
+              </a>
             </div>
           </motion.div>
         </div>
