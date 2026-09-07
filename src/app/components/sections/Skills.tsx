@@ -37,8 +37,7 @@ export function Skills() {
       titleKey: 'skills-cat-backend',
       icon: <Database size={24} />,
       skills: [
-        { name: 'Node.js / Express', percentage: 75 },
-        { name: 'REST APIs / GraphQL', percentage: 80 },
+        { name: 'Node.js', percentage: 75 },
         { name: 'Git / GitHub', percentage: 90 },
       ],
     },
