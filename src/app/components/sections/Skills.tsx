@@ -62,11 +62,6 @@ export function Skills() {
     },
   ];
 
-  const otherTools = [
-    'Redux', 'Zustand', 'React Query', 'Docker', 'AWS', 'Firebase',
-    'MongoDB', 'PostgreSQL', 'Prisma', 'tRPC', 'Storybook', 'Radix UI',
-  ];
-
   return (
     <section id="skills" className="py-24 relative overflow-hidden bg-background-secondary">
       {/* Background Pattern */}
@@ -135,32 +130,6 @@ export function Skills() {
           ))}
         </div>
 
-        {/* Other Tools */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <h3 className="font-heading text-xl text-text-primary mb-6">
-            {t('skills-tools-heading')}
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {otherTools.map((tool, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ scale: 1.1 }}
-                className="px-4 py-2 bg-surface border border-border-custom rounded-lg text-text-secondary hover:border-primary hover:text-primary hover:shadow-[0_0_15px_rgba(255,26,26,0.2)] transition-all cursor-default"
-              >
-                {tool}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
