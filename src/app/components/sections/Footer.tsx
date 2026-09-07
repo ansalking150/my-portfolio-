@@ -27,10 +27,9 @@ export function Footer() {
     connect: {
       headingKey: 'footer-connect-heading',
       links: [
-        { nameKey: 'footer-connect-github',   href: 'https://github.com' },
-        { nameKey: 'footer-connect-linkedin', href: 'https://www.linkedin.com/in/ans-ahmed-106a33362?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
-        { nameKey: 'footer-connect-twitter',  href: 'https://twitter.com' },
-        { nameKey: 'footer-connect-email',    href: 'mailto:anas.ahmed@example.com' },
+        { nameKey: 'footer-connect-github',   href: 'https://github.com/ansalking150' },
+        { nameKey: 'footer-connect-linkedin', href: 'https://www.linkedin.com/in/anas-ahmed-106a33362' },
+        { nameKey: 'footer-connect-email',    href: 'mailto:anaslking150@gmail.com' },
       ],
     },
   };

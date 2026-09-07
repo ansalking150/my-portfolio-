@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, CheckCircle, XCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, CheckCircle, XCircle } from 'lucide-react';
 import { Input, Textarea } from '../Input';
 import { Button } from '../Button';
 import { useState } from 'react';
@@ -35,9 +35,8 @@ export function Contact() {
     {
       icon: <Linkedin size={20} />,
       name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/ans-ahmed-106a33362?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      url: 'https://www.linkedin.com/in/anas-ahmed-106a33362',
     },
-    { icon: <Twitter size={20} />, name: 'Twitter', url: 'https://twitter.com' },
   ];
 
   const [formData, setFormData] = useState({
